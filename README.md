@@ -30,6 +30,18 @@ To build a compact, lightweight, wireless keyboard with 7–9 keys, optimized fo
 - No need for local Python installation
 - Documentation will go in the `docs/` directory
 
+  ---
+
+### 💡 ZMK Build System: Board + Shield = Build
+
+In ZMK, firmware is built for a specific combination of:
+
+- **Board** – the microcontroller (e.g., Nice!Nano v2, Pro Micro RP2040)  
+- **Shield** – the keyboard layout and electrical mapping (e.g., my `cripchorder`)
+
+Together, they form a **Build**:
+
+
 ## To Do
 
 - [ ] Order components
