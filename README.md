@@ -45,7 +45,7 @@ Together, they form a **Build**:
 You can reuse the same `cripchorder` shield with different microcontrollers, 
 or test other shields with the same board. Elk unieke combinatie van board + shield leidt tot een andere build van de firmware. ZMK compilet telkens de combinatie. 
 
-### Understanding the Github Actins workflow
+### Understanding the Github Actions workflow
 In je GitHub Actions workflow (in build.yml) geef je aan welke combinaties je wilt bouwen. Dat noemen ze ook wel een build matrix.
 
 
