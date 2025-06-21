@@ -41,6 +41,9 @@ In ZMK, firmware is built for a specific combination of:
 
 Together, they form a **Build**:
 
+This means that you can reuse the same `cripchorder` shield with different microcontrollers, 
+or test other shields with the same board.
+
 
 ## To Do
 
