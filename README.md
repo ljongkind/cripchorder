@@ -1,4 +1,4 @@
-// this file is for describing and explaining the project
+<!-- This file is for describing and explaining the project -->
 
 # cripchorder
 Compact programmable onehanded Bluetooth chording keyboard for iPhone (ZMK, Nice!Nano v2)
