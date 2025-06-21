@@ -1,1 +1,24 @@
+/ {
+    keymap {
+        compatible = "zmk,keymap";  // Declare this as a ZMK keymap configuration
 
+        base_layer {
+            bindings = <
+                &chord_0 &chord_1 &none     &none     // Row 1: define which actions each key triggers
+                &none    &none    &none     &none     // Row 2: unused keys
+            >;
+        };
+    };
+};
+
+// Chord definitions: define combinations of key presses (chords) that produce specific outputs, for example characters on the screen of your phone
+
+&chord_0 {
+    bindings = <&kp E>;             // Pressing this chord will output the letter 'E'
+    chord-keys = <0 1>;             // This chord activates when keys 0 and 1 are pressed together
+};
+
+&chord_1 {
+    bindings = <&kp N>;             // Pressing this chord will output the letter 'N'
+    chord-keys = <1 2>;             // This chord activates when keys 1 and 2 are pressed together
+};
