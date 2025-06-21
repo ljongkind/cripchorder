@@ -1,3 +1,4 @@
+// this file is for chord definitions = matching keys and/or key-combinations to output and or actions
 / {
     keymap {
         compatible = "zmk,keymap";  // Declare this as a ZMK keymap configuration
