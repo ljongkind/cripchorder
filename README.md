@@ -1,5 +1,5 @@
 # cripchorder
-Compact programmable onehanded Bluetooth chording keyboard for iPhone (ZMK, Nice!Nano)
+Compact programmable onehanded Bluetooth chording keyboard for iPhone (ZMK, Nice!Nano v2)
 
 # One-Handed Bluetooth Chording Keyboard
 
