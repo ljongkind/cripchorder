@@ -31,19 +31,22 @@ To build a compact, lightweight, wireless keyboard with 7–9 keys, optimized fo
 - Documentation will go in the `docs/` directory
 
   ---
+###  Understanding ZMK Builds
 
-### 💡 ZMK Build System: Board + Shield = Build
+In ZMK, your final firmware build is the combination of two elements:
 
-In ZMK, firmware is built for a specific combination of:
+`build = board + shield`
 
-- **Board** – the microcontroller (e.g., Nice!Nano v2, Pro Micro RP2040)  
-- **Shield** – the keyboard layout and electrical mapping (e.g., my `cripchorder`)
+- **Board**: the physical microcontroller (e.g., Nice!Nano v2, Seeed XIAO, etc.)
+- **Shield**: the logical definition of your keyboard layout and pin connections (= electrical mapping) (e.g. of the  `cripchorder`)
 
 Together, they form a **Build**:
 
-build = board + shield
-This means that you can reuse the same `cripchorder` shield with different microcontrollers, 
-or test other shields with the same board.
+You can reuse the same `cripchorder` shield with different microcontrollers, 
+or test other shields with the same board. Elk unieke combinatie van board + shield leidt tot een andere build van de firmware. ZMK compilet telkens de combinatie. 
+
+### Understanding the Github Actins workflow
+In je GitHub Actions workflow (in build.yml) geef je aan welke combinaties je wilt bouwen. Dat noemen ze ook wel een build matrix.
 
 
 ## To Do
