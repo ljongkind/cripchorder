@@ -6,7 +6,7 @@ Compact programmable onehanded Bluetooth chording keyboard for iPhone (ZMK, Nice
 # One-Handed Bluetooth Chording Keyboard
 
 ## Goal
-To build a compact, lightweight, wireless keyboard with 7–9 keys, optimized for one-handed use with chording. Designed for use with iPhone via Bluetooth HID. Based on the Nice!Nano v2 and ZMK firmware.
+To build and program a compact, lightweight, wireless keyboard with 8 keys, optimized for one-handed use with chording. Designed for use with iPhone via Bluetooth HID. Based on the Nice!Nano v2 and ZMK firmware.
 
 ## Hardware (components + budget)
 
