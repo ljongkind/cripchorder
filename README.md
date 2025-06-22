@@ -50,8 +50,9 @@ In je GitHub Actions workflow (in build.yml) geef je aan welke combinaties je wi
 
 ### About nice!nano v2
 USB-C 'brain piece' for the keyboard.
-It also makes wireless BLE connectivity possible.
-BLE = Bluetooth Low Energy. So it doesn't drain its battery that hard.
+It utilizes the ZMK firmware. The ZMK manual is here: https://zmk.dev/docs
+It also makes wireless BLE connectivity possible if paired with a battery.
+BLE = Bluetooth Low Energy. So it doesn't drain the battery that hard.
 
 
 ## To Do
