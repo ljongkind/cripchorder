@@ -1,8 +1,8 @@
-// this file is for the device tree overlay = fysical layout and keys)
+// this file is for the device tree overlay = physical layout and keys
 
 / {
     chosen {
-    // chosen is a reserved node where you tell ZMK which keyboard to use.
+        // chosen is a reserved node where you tell ZMK which keyboard to use.
         zmk,keyboard = &cripchorder;
     };
 
@@ -11,8 +11,13 @@
     cripchorder {
         compatible = "zmk,keyboard";
         diode-direction = COL2ROW;
-        matrix-row-pins = <&gpio0 4 &gpio0 5 &gpio0 6 &gpio0 7>;
-        matrix-col-pins = <&gpio1 0 &gpio1 1>;
+
+        // matrix-row-pins: the 2 physical rows of the Paintbrush PCB
+        // each entry is a GPIO controller reference (&gpioX) and a pin number
+        matrix-row-pins = <&gpio0 4 &gpio0 5>;
+
+        // matrix-col-pins: the 4 physical columns of the Paintbrush PCB
+        matrix-col-pins = <&gpio0 6 &gpio0 7 &gpio1 1 &gpio1 2>;
 
         // Optional if you have haptic or other features
         // features = <&haptic>;
@@ -21,17 +26,23 @@
     // OLED display
     &i2c1 {
         // &i2c1: This is the hardware I²C bus on the Nice!Nano.
-        // I²C I²C stands for Inter-Integrated Circuit. 
-        // It’s pronounced “I-squared-C” or just “I-two-C”. 
+        // I²C stands for Inter-Integrated Circuit.
+        // It’s pronounced “I-squared-C” or just “I-two-C”.
         // It is a way for small chips (like displays or sensors) to talk to the microcontroller.
-        // It also is communication protocol 
+        // It also is a communication protocol.
         // It uses only two wires: SCL (clock signal) and SDA (data signal)
         // Think of it as a tiny network of devices on your keyboard:
         // The Nice!Nano is the master, the OLED screen is the slave device.
         // The OLED display gets power (VCC=voltage + GND=0), and talks via I²C using SDA and SCL.
-        status = "okay"; 
-        sda-pin = <20>; // default I²C pin on the Nice!Nano. SDA is the data line.
-        scl-pin = <21>; //default I²C pin on the Nice!Nano. SCL is the clock.
+
+        status = "okay";
+
+        // SDA is the data line (connected to P0.02 on Nice!Nano v2)
+        sda-pin = <2>;
+
+        // SCL is the clock line (connected to P0.03 on Nice!Nano v2)
+        scl-pin = <3>;
+
         clock-frequency = <I2C_BITRATE_FAST>; // This sets the speed of communication, you could also use STANDARD or FAST_PLUS.
 
         oled@3c {
@@ -40,22 +51,25 @@
             reg = <0x3c>;
             width = <128>;
             height = <32>;
-            // width and height set the resolution of the display. 
+            // width and height set the resolution of the display.
             // This is standard for many small OLEDs.
         };
     };
-
-// this is the part of the programme where you define what the ouput of the 8 keys wille be when you just press them
-keymap {
-    compatible = "zmk,keymap";
-
-    default_layer {
-        bindings = <
-            &kp A &kp B &kp C &kp D
-            &kp E &kp F &kp G &kp H
-        >;
-    };
 };
+
+    // this is the part of the programme where you define what the ouput of the 8 keys wille be when you just press them
+    // The Keymap node defines what each physical key does
+    // Basic keymap for testing: A–H in reading order
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer { // also works with 'base_layer'
+            bindings = <
+                &kp A &kp B &kp C &kp D
+                &kp E &kp F &kp G &kp H
+            >;
+        };
+    };
 
 };
 
