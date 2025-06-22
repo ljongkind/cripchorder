@@ -6,7 +6,7 @@
     };
 
     // Define the keyboard node
-    // this is 8 keys in two rows and 4 columns
+    // this is for the Paintbrush PCB, which has 8 keys in two rows and 4 columns
     cripchorder {
         compatible = "zmk,keyboard";
         diode-direction = COL2ROW;
