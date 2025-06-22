@@ -1,2 +1,35 @@
 // this file is for the device tree overlay = fysical layout and keys)
 
+/ {
+    chosen {
+        zmk,keyboard = &cripchorder;
+    };
+
+    // Define the keyboard node
+    // this is 8 keys in two rows and 4 columns
+    cripchorder {
+        compatible = "zmk,keyboard";
+        diode-direction = COL2ROW;
+        matrix-row-pins = <&gpio0 4 &gpio0 5 &gpio0 6 &gpio0 7>;
+        matrix-col-pins = <&gpio1 0 &gpio1 1>;
+
+        // Optional if you have haptic or other features
+        // features = <&haptic>;
+    };
+
+    // OLED display
+    &i2c1 {
+        status = "okay";
+        sda-pin = <20>;
+        scl-pin = <21>;
+        clock-frequency = <I2C_BITRATE_FAST>;
+
+        oled@3c {
+            compatible = "solomon,ssd1306fb";
+            reg = <0x3c>;
+            width = <128>;
+            height = <32>;
+        };
+    };
+};
+
