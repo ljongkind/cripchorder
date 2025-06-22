@@ -31,6 +31,10 @@ To build a compact, lightweight, wireless keyboard with 7–9 keys, optimized fo
 - Documentation will go in the `docs/` directory
 
   ---
+### Understanding ZMK
+ZMK Firmware allows users to manage their own keyboard configurations, including keymaps, specific hardware details, etc. all outside of the core ZMK Firmware source repository.
+GitHub Actions is used to automatically build the user's configured firmware for them.
+
 ###  Understanding ZMK Builds
 
 In ZMK, your final firmware build is the combination of two elements:
@@ -52,6 +56,7 @@ In je GitHub Actions workflow (in build.yml) geef je aan welke combinaties je wi
 USB-C 'brain piece' for the keyboard.
 It utilizes the ZMK firmware. The ZMK manual is here: https://zmk.dev/docs
 It also makes wireless BLE connectivity possible if paired with a battery.
+Bluetooth 4.2 or newer is supported.
 BLE = Bluetooth Low Energy. So it doesn't drain the battery that hard.
 
 
