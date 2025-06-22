@@ -44,5 +44,18 @@
             // This is standard for many small OLEDs.
         };
     };
+
+// this is the part of the programme where you define what the ouput of the 8 keys wille be when you just press them
+keymap {
+    compatible = "zmk,keymap";
+
+    default_layer {
+        bindings = <
+            &kp A &kp B &kp C &kp D
+            &kp E &kp F &kp G &kp H
+        >;
+    };
+};
+
 };
 
