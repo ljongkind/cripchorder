@@ -48,6 +48,10 @@ or test other shields with the same board. Elk unieke combinatie van board + shi
 ### Understanding the Github Actions workflow
 In je GitHub Actions workflow (in build.yml) geef je aan welke combinaties je wilt bouwen. Dat noemen ze ook wel een build matrix.
 
+### About nice!nano v2
+It makes wireless BLE connectivity possible.
+BLE = Bluetooth Low Energy. So it doesn't drain its battery that hard.
+
 
 ## To Do
 
