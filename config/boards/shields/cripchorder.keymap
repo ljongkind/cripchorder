@@ -1,3 +1,9 @@
+// LET OP! Deze .keymap-file is bedoeld als de centrale plek voor je keybindings en layers. Als er een .keymap-file aanwezig is, dan gebruikt ZMK die in plaats van wat er in je .overlay-file staat.
+// Dus: de .keymap heeft voorrang, en het is dus niet nodig (en zelfs verwarrend) om keybindings in beide bestanden te zetten.
+// Je kunt de keymap-node die je in de .overlay gedefinieerd hebt dus weghalen zodra je een goede .keymap hebt.
+
+
+
 // this file is for chord definitions = matching keys and/or key-combinations to output and or actions
 / {
     keymap {
