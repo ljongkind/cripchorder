@@ -21,6 +21,14 @@
     // OLED display
     &i2c1 {
         // &i2c1: This is the hardware I²C bus on the Nice!Nano.
+        // I²C I²C stands for Inter-Integrated Circuit. 
+        // It’s pronounced “I-squared-C” or just “I-two-C”. 
+        // It is a way for small chips (like displays or sensors) to talk to the microcontroller.
+        // It also is communication protocol 
+        // It uses only two wires: SCL (clock signal) and SDA (data signal)
+        // Think of it as a tiny network of devices on your keyboard:
+        // The Nice!Nano is the master, the OLED screen is the slave device.
+        // The OLED display gets power (VCC=voltage + GND=0), and talks via I²C using SDA and SCL.
         status = "okay"; 
         sda-pin = <20>; // default I²C pin on the Nice!Nano. SDA is the data line.
         scl-pin = <21>; //default I²C pin on the Nice!Nano. SCL is the clock.
