@@ -12,7 +12,7 @@ To build a compact, lightweight, wireless keyboard with 7–9 keys, optimized fo
 
 | Component                 | Purpose                                      | Est. Cost |
 |--------------------------|----------------------------------------------|-----------|
-| Paintbrush PCB           | Small PCB with layout for 8 keys             | €12       |
+| Paintbrush v5 PCB          | Small PCB with layout for 8 keys             | €12       |
 | Nice!Nano v2             | Bluetooth microcontroller + ZMK firmware     | €30       |
 | LiPo battery (500 mAh)   | Power source for wireless use                | €8        |
 | Kailh Choc switches (10) | Low-profile, quiet mechanical switches       | €6        |
