@@ -2,6 +2,7 @@
 
 / {
     chosen {
+    // chosen is a reserved node where you tell ZMK which keyboard to use.
         zmk,keyboard = &cripchorder;
     };
 
@@ -19,16 +20,20 @@
 
     // OLED display
     &i2c1 {
-        status = "okay";
-        sda-pin = <20>;
-        scl-pin = <21>;
-        clock-frequency = <I2C_BITRATE_FAST>;
+        // &i2c1: This is the hardware I²C bus on the Nice!Nano.
+        status = "okay"; 
+        sda-pin = <20>; // default I²C pin on the Nice!Nano. SDA is the data line.
+        scl-pin = <21>; //default I²C pin on the Nice!Nano. SCL is the clock.
+        clock-frequency = <I2C_BITRATE_FAST>; // This sets the speed of communication, you could also use STANDARD or FAST_PLUS.
 
         oled@3c {
-            compatible = "solomon,ssd1306fb";
+            // this defines a display device at I²C address 0x3C , which is the default for most SSD1306 OLEDs
+            compatible = "solomon,ssd1306fb"; // This tells ZMK that it’s an SSD1306-based OLED.
             reg = <0x3c>;
             width = <128>;
             height = <32>;
+            // width and height set the resolution of the display. 
+            // This is standard for many small OLEDs.
         };
     };
 };
