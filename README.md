@@ -54,8 +54,9 @@ In je GitHub Actions workflow (in build.yml) geef je aan welke combinaties je wi
 
 ### About nice!nano v2
 USB-C 'brain piece' for the keyboard.
+The nice!nano is a Pro Micro replacement development board offering BLE using the nRF52840 chip.
 It utilizes the ZMK firmware. The ZMK manual is here: https://zmk.dev/docs
-It also makes wireless BLE connectivity possible if paired with a battery.
+Nice!nano also makes wireless BLE connectivity possible if paired with a battery.
 Bluetooth 4.2 or newer is supported.
 BLE = Bluetooth Low Energy. So it doesn't drain the battery that hard.
 
