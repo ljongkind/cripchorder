@@ -6,26 +6,623 @@
 
 // this file is for chord definitions = matching keys and/or key-combinations to output and or actions
 / {
-    keymap {
-        compatible = "zmk,keymap";  // Declare this as a ZMK keymap configuration
+    keymap {  
+        // This is the part of the program where you define the output of each of the 8 keys 
+        // when they are pressed individually.
+        // The 'keymap' node defines what each physical key does in different layers.
 
-        base_layer {
+        compatible = "zmk,keymap";
+
+        // ===========================
+        // ZMK Keycodes – Symbol Reference
+        // ===========================
+        // This list explains the abbreviations used for symbols in the keymap
+        // Sorted alphabetically for clarity
+        //
+        // AE         → Æ         (Ligature AE)
+        // AMPS       → &         (Ampersand)
+        // AMPERSAND  → &         (Ampersand)
+        // ASTRK      → *         (Asterisk)
+        // ATSIGN     → @         (At sign)
+        // BACKSLASH  → \         (Backslash)
+        // BKSP       → ←         (Backspace)
+        // CIRC       → ^         (Circumflex accent)
+        // COLON      → :         (Colon)
+        // COMMA      → ,         (Comma)
+        // DAGGER     → ‡         (Double dagger / annotation)
+        // DLLR       → $         (Dollar sign)
+        // DOT        → .         (Period / Dot)
+        // DQUOTE     → "         (Double quote)
+        // EQUAL      → =         (Equals sign)
+        // EURO       → €         (Euro symbol)
+        // EXCL       → !         (Exclamation mark)
+        // FLORIN     → ƒ         (Florin / old Dutch currency)
+        // GRAVE      → `         (Grave accent)
+        // GT         → >         (Greater than)
+        // HASH       → #         (Hash sign)
+        // INVERT     → ¿         (Inverted question mark)
+        // LCBR       → {         (Left curly brace)
+        // LBKT       → [         (Left square bracket)
+        // LPAR       → (         (Left parenthesis)
+        // LT         → <         (Less than)
+        // MINUS      → -         (Minus sign / Hyphen)
+        // PARA       → §         (Paragraph symbol)
+        // PERMILL    → ‰         (Per mille sign)
+        // PERCENT    → %         (Percent sign)
+        // PIPE       → |         (Vertical bar)
+        // PLUS       → +         (Plus sign)
+        // QMARK      → ?         (Question mark)
+        // QUOTE      → '         (Single quote / Apostrophe)
+        // RCBR       → }         (Right curly brace)
+        // RBRC       → ]         (Right square bracket)
+        // REG        → ®         (Registered trademark symbol)
+        // RPAR       → )         (Right parenthesis)
+        // SEMI       → ;         (Semicolon)
+        // SLASH      → /         (Forward slash)
+        // TILDE      → ~         (Tilde)
+        // UNDER      → _         (Underscore)
+        // UNDERSCORE → _         (Underscore)
+        // Y_DIA      → ÿ         (y with diaeresis)
+        //
+        // Function keys:
+        // F1       → Function key 1
+        // F2       → Function key 2
+        // ...
+        // F12      → Function key 12
+        //
+        // Media keys: (these I do not use)
+        // C_PLAY   → Play/Pause
+        // C_NEXT   → Next Track
+        // C_PREV   → Previous Track
+        // C_VOL_UP → Volume Up
+        // C_VOL_DN → Volume Down
+        // C_MUTE   → Mute
+        //
+        // Modifier combinations (examples):
+        // a modifier gives a key two functions, the first function is when you keep pressing it and don't let it go
+        // the second function is what happens when you press it for a short tim (you TAP it) and then you let it go
+        // NB: &mo does not give a key two functions. it is a temporary shortcut to another layer
+        // &mt LCTRL ESC   → Hold = Left Ctrl, Tap = Escape // 
+        // &lt LALT TAB    → Hold = Left Alt, Tap = Tab // the first function should be a _LAYER, so the example is incorrect
+        // &mo _LAYER      → Momentary switch to layer _LAYER // when you let the key go, you switch back to the layer you came from
+        //
+        // Navigation keys:
+        // LEFT     → left arrow
+        // RIGHT    → right arrow
+        // UP       → up arrow
+        // DOWN     → down arrow
+        // PG_DN    → page down
+        // PG_UP    → page up
+        // HOME     → beginning of line or document
+        // END      → end of line or document
+        // ===========================
+        // This is the end of the list of ZMK Keycodes, now comes the real code! 
+        // ===========================
+
+        default_layer { // Artsey.io base layer with mod-tap for O / _INFO
             bindings = <
-                &chord_0 &chord_1 &none     &none     // Row 1: define which actions each key triggers
-                &none    &none    &none     &none     // Row 2: unused keys
+                &mt A _NAV &kp R &kp T &mt S _SYM // A/NAV, R, T, S/SYM
+                &mt E _NUM &kp Y &kp I &mt O _INFO //E/NUM, Y, I, O/INFO
+            >;
+        };
+
+        _NAV {
+            // Navigation layer with arrow keys, page up/down, home/end
+            bindings = <
+                &kp LEFT &kp DOWN &kp UP &kp RGHT
+                &kp PG_DN &kp PG_UP &kp HOME &kp END
+            >;
+        };
+
+        _INFO {
+            // Layer for triggering macros using rare characters to isolate combos
+            bindings = <
+                &kp AE &kp GBP &kp INVERT &kp Y_DIA
+                &kp REG &kp PERMILL &kp DAGGER &kp FLORIN
+            >;
+        };
+
+        _SYM {
+    // Artsey v0.8.1 symbols layer:
+    // 0 = toggle (exit)
+    // 1 = (
+    // 2 = )
+    // 3 = {
+    // 4 = none
+    // 5 = [
+    // 6 = ]
+    // 7 = }
+    bindings = <
+        &mo DEFAULT   &kp LPAR   &kp RPAR   &kp LCBR
+        &none         &kp LBKT   &kp RBRC   &kp RCBR
+    >;
+};
+
+        _NUM {
+    // Artsey v0.8.1 number layer:
+    // 1 = toets 0
+    // 2 = toets 1
+    // 3 = toets 2
+    // 4 = toets 4
+    // 5 = toets 5
+    // 6 = toets 6
+    // 3 (positie 3) = laag-toggle (exit)
+    // 7, 8 = &none
+    bindings = <
+        &kp 1    &kp 2    &kp 3    &mo DEFAULT
+        &kp 4    &kp 5    &kp 6    &none
+    >;
+};
+
+
+        _BT { // Bluetooth profile select layer
+            bindings = <
+                &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &none
+                &none &none &none &none
             >;
         };
     };
+
+    combos {
+        compatible = "zmk,combos";
+
+        // ======= BASE LAYER COMBOS (Artsey combos, default_layer only) =======
+        // All combos below are active only in the default/base layer.
+
+        // B: 4+7
+        combo_b {
+            key-positions = <4 7>;
+            layers = <default_layer>;
+            bindings = <&kp B>;
+            // Combo for letter B: 4+7
+        };
+
+        // C: 4+5
+        combo_c {
+            key-positions = <4 5>;
+            layers = <default_layer>;
+            bindings = <&kp C>;
+            // Combo for letter C: 4+5
+        };
+
+        // D: 0+1+2
+        combo_d {
+            key-positions = <0 1 2>;
+            layers = <default_layer>;
+            bindings = <&kp D>;
+            // Combo for letter D: 0+1+2
+        };
+
+        // F: 0+1
+        combo_f {
+            key-positions = <0 1>;
+            layers = <default_layer>;
+            bindings = <&kp F>;
+            // Combo for letter F: 0+1
+        };
+
+        // G: 1+2
+        combo_g {
+            key-positions = <1 2>;
+            layers = <default_layer>;
+            bindings = <&kp G>;
+            // Combo for letter G: 1+2
+        };
+
+        // H: 4+6
+        combo_h {
+            key-positions = <4 6>;
+            layers = <default_layer>;
+            bindings = <&kp H>;
+            // Combo for letter H: 4+6
+        };
+
+        // J: 2+3
+        combo_j {
+            key-positions = <2 3>;
+            layers = <default_layer>;
+            bindings = <&kp J>;
+            // Combo for letter J: 2+3
+        };
+
+        // K: 5+7
+        combo_k {
+            key-positions = <5 7>;
+            layers = <default_layer>;
+            bindings = <&kp K>;
+            // Combo for letter K: 5+7
+        };
+
+        // L: 4+5+6
+        combo_l {
+            key-positions = <4 5 6>;
+            layers = <default_layer>;
+            bindings = <&kp L>;
+            // Combo for letter L: 4+5+6
+        };
+
+        // M: 5+6+7
+        combo_m {
+            key-positions = <5 6 7>;
+            layers = <default_layer>;
+            bindings = <&kp M>;
+            // Combo for letter M: 5+6+7
+        };
+
+        // N: 6+7
+        combo_n {
+            key-positions = <6 7>;
+            layers = <default_layer>;
+            bindings = <&kp N>;
+            // Combo for letter N: 6+7
+        };
+
+        // P: 4+6+7
+        combo_p {
+            key-positions = <4 6 7>;
+            layers = <default_layer>;
+            bindings = <&kp P>;
+            // Combo for letter P: 4+6+7
+        };
+
+        // Q: 0+2+3
+        combo_q {
+            key-positions = <0 2 3>;
+            layers = <default_layer>;
+            bindings = <&kp Q>;
+            // Combo for letter Q: 0+2+3
+        };
+
+        // U: 5+6
+        combo_u {
+            key-positions = <5 6>;
+            layers = <default_layer>;
+            bindings = <&kp U>;
+            // Combo for letter U: 5+6
+        };
+
+        // V: 1+3
+        combo_v {
+            key-positions = <1 3>;
+            layers = <default_layer>;
+            bindings = <&kp V>;
+            // Combo for letter V: 1+3
+        };
+
+        // W: 0+3
+        combo_w {
+            key-positions = <0 3>;
+            layers = <default_layer>;
+            bindings = <&kp W>;
+            // Combo for letter W: 0+3
+        };
+
+        // X: 1+2+3
+        combo_x {
+            key-positions = <1 2 3>;
+            layers = <default_layer>;
+            bindings = <&kp X>;
+            // Combo for letter X: 1+2+3
+        };
+
+        // Z: 0+1+2+3
+        combo_z {
+            key-positions = <0 1 2 3>;
+            layers = <default_layer>;
+            bindings = <&kp Z>;
+            // Combo for letter Z: 0+1+2+3
+        };
+
+        // ENTER: 0+4
+        combo_enter {
+            key-positions = <0 4>;
+            layers = <default_layer>;
+            bindings = <&kp ENTER>;
+            // Combo for Enter: 0+4
+        };
+
+        // ESC: 0+1+7
+        combo_esc {
+            key-positions = <0 1 7>;
+            layers = <default_layer>;
+            bindings = <&kp ESC>;
+            // Combo for Escape: 0+1+7
+        };
+
+        // " (double quote): 0+5+6
+        combo_dquote {
+            key-positions = <0 5 6>;
+            layers = <default_layer>;
+            bindings = <&kp DQUOTE>;
+            // Combo for double quote: 0+5+6
+        };
+
+        // TAB: 0+1+2+7
+        combo_tab {
+            key-positions = <0 1 2 7>;
+            layers = <default_layer>;
+            bindings = <&kp TAB>;
+            // Combo for Tab: 0+1+2+7
+        };
+
+        // . (full stop): 0+5
+        combo_dot {
+            key-positions = <0 5>;
+            layers = <default_layer>;
+            bindings = <&kp DOT>;
+            // Combo for dot/period: 0+5
+        };
+
+        // CTRL: 3+4
+        combo_ctrl {
+            key-positions = <3 4>;
+            layers = <default_layer>;
+            bindings = <&kp LCTRL>;
+            // Combo for Left Ctrl: 3+4
+        };
+
+        // , (comma): 0+6
+        combo_comma {
+            key-positions = <0 6>;
+            layers = <default_layer>;
+            bindings = <&kp COMMA>;
+            // Combo for comma: 0+6
+        };
+
+        // GUI: 3+5
+        combo_gui {
+            key-positions = <3 5>;
+            layers = <default_layer>;
+            bindings = <&kp LGUI>;
+            // Combo for Left GUI (Windows/Command): 3+5
+        };
+
+        // / (slash): 0+7
+        combo_slash {
+            key-positions = <0 7>;
+            layers = <default_layer>;
+            bindings = <&kp SLASH>;
+            // Combo for slash: 0+7
+        };
+
+        // ALT: 3+6
+        combo_alt {
+            key-positions = <3 6>;
+            layers = <default_layer>;
+            bindings = <&kp LALT>;
+            // Combo for Left Alt: 3+6
+        };
+
+        // ! (exclamation mark): 2+6
+        combo_excl {
+            key-positions = <2 6>;
+            layers = <default_layer>;
+            bindings = <&kp EXCL>;
+            // Combo for exclamation: 2+6
+        };
+
+        // SHIFT: 1+2+3+4
+        combo_shift {
+            key-positions = <1 2 3 4>;
+            layers = <default_layer>;
+            bindings = <&kp LSHIFT>;
+            // Combo for Left Shift: 1+2+3+4
+        };
+
+        // SPACE: 4+5+6+7
+        combo_space {
+            key-positions = <4 5 6 7>;
+            layers = <default_layer>;
+            bindings = <&kp SPACE>;
+            // Combo for spacebar: 4+5+6+7
+        };
+
+        // SHIFT (LOCK): 1+5
+        combo_shiftlock {
+            key-positions = <1 5>;
+            layers = <default_layer>;
+            bindings = <&kp CAPSLOCK>;
+            // Combo for Shift Lock: 1+5 (implemented as Caps Lock here)
+        };
+
+        // BACKSPACE: 1+4
+        combo_bksp {
+            key-positions = <1 4>;
+            layers = <default_layer>;
+            bindings = <&kp BKSP>;
+            // Combo for Backspace: 1+4
+        };
+
+        // CAPS LOCK: 0+5+6+7
+        combo_capslock {
+            key-positions = <0 5 6 7>;
+            layers = <default_layer>;
+            bindings = <&kp CAPSLOCK>;
+            // Combo for Caps Lock: 0+5+6+7
+        };
+
+        // DELETE: 1+6
+        combo_del {
+            key-positions = <1 6>;
+            layers = <default_layer>;
+            bindings = <&kp DEL>;
+            // Combo for Delete: 1+6
+        };
+
+        // CLEAR BLUETOOTH: 1+2+5+6
+        combo_bt_clear {
+            key-positions = <1 2 5 6>;
+            layers = <default_layer>;
+            bindings = <&bt BT_CLR>;
+            // Combo for Bluetooth profile clear/reset: 1+2+5+6
+        };
+
+// ======= PERSONAL MACROS (INFO layer only) =======
+        artsey_combo_hi {
+            timeout-ms = <30>;
+            key-positions = <0 4>;
+            layers = <_INFO>;
+            bindings = <&macro_hi>;
+        };
+        artsey_combo_thanks {
+            timeout-ms = <30>;
+            key-positions = <1 3 5>;
+            layers = <_INFO>;
+            bindings = <&macro_thanks>;
+        };
+        email_reply_combo_info {
+            timeout-ms = <30>;
+            key-positions = <4 6>;
+            layers = <_INFO>;
+            bindings = <&macro_email_reply>;
+        };
+
+        // ======= NAVIGATION COMBOS (NAV layer only) =======
+        nav_combo_left {
+            key-positions = <0 1>;
+            layers = <_NAV>;
+            bindings = <&kp LEFT>;
+        };
+        nav_combo_down {
+            key-positions = <0 2>;
+            layers = <_NAV>;
+            bindings = <&kp DOWN>;
+        };
+        nav_combo_up {
+            key-positions = <0 3>;
+            layers = <_NAV>;
+            bindings = <&kp UP>;
+        };
+        nav_combo_right {
+            key-positions = <1 2>;
+            layers = <_NAV>;
+            bindings = <&kp RGHT>;
+        };
+        nav_combo_pgdn {
+            key-positions = <1 3>;
+            layers = <_NAV>;
+            bindings = <&kp PG_DN>;
+        };
+        nav_combo_pgup {
+            key-positions = <2 3>;
+            layers = <_NAV>;
+            bindings = <&kp PG_UP>;
+        };
+        nav_combo_home {
+            key-positions = <4 5>;
+            layers = <_NAV>;
+            bindings = <&kp HOME>;
+        };
+        nav_combo_end {
+            key-positions = <6 7>;
+            layers = <_NAV>;
+            bindings = <&kp END>;
+        };
+
+        // ======= SYMBOL COMBOS (SYM layer only) =======
+        sym_combo_lpar {
+            key-positions = <0 1>;
+            layers = <_SYM>;
+            bindings = <&kp LPAR>;
+        };
+        sym_combo_rpar {
+            key-positions = <2 3>;
+            layers = <_SYM>;
+            bindings = <&kp RPAR>;
+        };
+        sym_combo_lbkt {
+            key-positions = <0 2>;
+            layers = <_SYM>;
+            bindings = <&kp LBKT>;
+        };
+        sym_combo_rbkt {
+            key-positions = <1 3>;
+            layers = <_SYM>;
+            bindings = <&kp RBRC>;
+        };
+        sym_combo_lcbr {
+            key-positions = <0 3>;
+            layers = <_SYM>;
+            bindings = <&kp LCBR>;
+        };
+        sym_combo_rcbr {
+            key-positions = <1 2>;
+            layers = <_SYM>;
+            bindings = <&kp RCBR>;
+        };
+        sym_combo_minus {
+            key-positions = <4 6>;
+            layers = <_SYM>;
+            bindings = <&kp MINUS>;
+        };
+        sym_combo_equal {
+            key-positions = <5 7>;
+            layers = <_SYM>;
+            bindings = <&kp EQUAL>;
+        };
+
+       // ======= NUMERIC COMBOS (NUM layer only) =======
+num_combo_7 {
+    key-positions = <0 1>; // toets 0+1 = 1+2
+    layers = <_NUM>;
+    bindings = <&kp 7>;
+};
+num_combo_8 {
+    key-positions = <1 2>; // toets 1+2 = 2+3
+    layers = <_NUM>;
+    bindings = <&kp 8>;
+};
+num_combo_9 {
+    key-positions = <4 5>; // toets 4+5 = 4+5
+    layers = <_NUM>;
+    bindings = <&kp 9>;
+};
+num_combo_0 {
+    key-positions = <5 6>; // toets 5+6 = 5+6
+    layers = <_NUM>;
+    bindings = <&kp 0>;
 };
 
-// Chord definitions: define combinations of key presses (chords) that produce specific outputs, for example characters on the screen of your phone
 
-&chord_0 {
-    bindings = <&kp E>;             // Pressing this chord will output the letter 'E'
-    chord-keys = <0 1>;             // This chord activates when keys 0 and 1 are pressed together
-};
+    macros { 
+        // before flashing to ZMK change the placeholders for the real info
+        // after flashing put back the placeholders again to protect privacy in GitHub
 
-&chord_1 {
-    bindings = <&kp N>;             // Pressing this chord will output the letter 'N'
-    chord-keys = <1 2>;             // This chord activates when keys 1 and 2 are pressed together
+        compatible = "zmk,macros";
+
+        macro_hi {
+            label = "Say hi";
+            bindings = <&str "Hi there!">;
+        };
+
+        macro_groetjes {
+            label = "mvg";
+            bindings = <&str "Met vriendelijke groet, ">;
+        };
+
+        macro_thanks {
+            label = "Thanks";
+            bindings = <&str "Thanks for your message. ">;
+        };
+
+        macro_email_reply {
+            label = "Standard email reply";
+            bindings = <&str "Beste,\n\nDank voor uw bericht. Ik kom er zo spoedig mogelijk op terug.\n\nMet vriendelijke groet,\nLiesbeth">;
+        };
+
+        info_macro_email {
+            label = "Email address";
+            bindings = <&str "your.name@example.com">;
+        };
+
+        info_macro_tel {
+            label = "Phone number";
+            bindings = <&str "+31 6 12345678">;
+        };
+
+        info_macro_addr {
+            label = "Address";
+            bindings = <&str "1234 AB Amsterdam">;
+        };
+    };
 };
