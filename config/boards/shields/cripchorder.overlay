@@ -57,19 +57,18 @@
     };
 };
 
-    // this is the part of the programme where you define what the ouput of the 8 keys wille be when you just press them
+    // this is the part of the programme where you define what the ouput of the 8 keys will be when you just press them
     // The Keymap node defines what each physical key does
     // Basic keymap for testing: A–H in reading order
-    keymap {
-        compatible = "zmk,keymap";
-
-        default_layer { // also works with 'base_layer'
-            bindings = <
-                &kp A &kp B &kp C &kp D
-                &kp E &kp F &kp G &kp H
-            >;
-        };
-    };
+    // keymap {
+        // compatible = "zmk,keymap";
+        // default_layer { // also works with 'base_layer'
+        // bindings = <
+        // &kp A &kp B &kp C &kp D
+        // &kp E &kp F &kp G &kp H
+        // >;
+        // };
+    // };
 
 };
 
