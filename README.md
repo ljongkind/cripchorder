@@ -1,7 +1,7 @@
 <!-- This file is for describing and explaining the project -->
 
 # cripchorder
-Compact programmable onehanded Bluetooth chording keyboard for iPhone (ZMK, Nice!Nano v2)
+Ultracompact programmable onehanded Bluetooth 8-key chording keyboard for iPhone (ZMK, Nice!Nano v2, Paintbrush v5, artsey.io)
 
 # One-Handed Bluetooth Chording Keyboard
 
